@@ -15,14 +15,21 @@
       <h1 class="title">
         Hello There !
       </h1>
+      <br>
       <% users.forEach(function(user) { %>
       <p class="subtitle">
         My name is <strong> <%= user.name %> </strong>!
       </p>
       <p class="subtitle">
+        <% if(user.age > 18) { %>
+        Age of user is greater than 18.
+        <% } else { %>
+        Age of user is less than 18.
+        <% } %>
         My age is <strong> <%= user.age %> </strong>!
       </p>
       <% }); %>
+      <hr>
     </div>
   </section>
 </body>

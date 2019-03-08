@@ -31,7 +31,7 @@ router.get('/loop/data', (req, res) => {
   var users = [
     {
       name : "test 1",
-      age : "18"
+      age : "17"
     },
     {
       name : "test 2",
@@ -39,7 +39,7 @@ router.get('/loop/data', (req, res) => {
     },
     {
       name : "test 3",
-      age : "18"
+      age : "15"
     },
   ];
   res.render('data', { users : users });
