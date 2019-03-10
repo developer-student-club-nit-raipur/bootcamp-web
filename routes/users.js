@@ -3,23 +3,25 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/form', function(req, res, next) {
-  res.render('form');
+  res.render('test');
 });
 
+
+
 //POST Methods for getting form data
-// router.post('/formpost', function(req, res){
-//   var name = req.body.name;
-//   var age = req.body.age;
-//   var contact = req.body.contact;
+router.post('/formpost', function(req, res){
+  var name = req.body.name;
+  var age = req.body.age;
+  var contact = req.body.contact;
   
-//   var userData = {
-//     name : name,
-//     age : age,
-//     contact : contact
-//   };
-//   console.log(userData);
-//   res.render('data', { user : userData });
-// });
+  var userData = {
+    name : name,
+    age : age,
+    contact : contact
+  };
+  console.log(userData);
+  res.render('data', { user : userData });
+});
 
 router.get('/:name', (req, res) => {
   var name = req.params.name;
