@@ -9,6 +9,16 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+mongoose.Promise = global.Promise;
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("Hiyya, we are connected!");
+});
+
 var app = express();
 
 // view engine setup
