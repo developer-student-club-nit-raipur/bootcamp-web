@@ -1,11 +1,89 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          Hello World
+        </h1>
+        <p class="subtitle">
+          Bootcamp on web development by <strong>DSC NIT Raipur</strong>!
+        </p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th><abbr title="no">No.</abbr></th>
+              <th>Title</th>
+              <th><abbr title="description">Description</abbr></th>
+              <th><abbr title="endDate">End Date</abbr></th>
+              <th><abbr title="status">Status</abbr></th>
+              <th><abbr title="updated">Last Updated</abbr></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th><abbr title="no">No.</abbr></th>
+              <th>Title</th>
+              <th><abbr title="description">Description</abbr></th>
+              <th><abbr title="endDate">End Date</abbr></th>
+              <th><abbr title="status">Status</abbr></th>
+              <th><abbr title="updated">Last Updated</abbr></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% tasks.forEach(function(task, index){ %>
+            <tr>
+              <td>
+                <%= index+1 %>
+              </td>
+              <td>
+                <a href="/tasks/edit/<%= task.id %>"><%= task.title %></a>
+              </td>
+              <td>
+                <%= task.description %>
+              </td>
+              <td>
+                <%= task.endDate %>
+              </td>
+              <td>
+                <%= task.status %>
+              </td>
+              <td>
+                <%= task.updated %>
+              </td>
+              <td>
+                  <a href="/tasks/approve/<%= task.id %>" class="button"
+                    >Approve</a
+                  >
+              </td>
+              <td>
+                <a href="/tasks/disapprove/<%= task.id %>" class="button"
+                  >Disapprove</a
+                >
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </body>
 </html>

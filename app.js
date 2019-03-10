@@ -1,4 +1,4 @@
-`var createError = require("http-errors");
+var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
@@ -8,9 +8,9 @@ var session = require("express-session");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var tasksRouter = require("./routes/tasks");
 
 var app = express();
-require("dotenv").load();
 
 // Conecting to mongodb
 
@@ -27,6 +27,17 @@ require("dotenv").load();
 //   client.close();
 // });
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+mongoose.Promise = global.Promise;
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("Hiyya, we are connected!");
+});
+
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -42,37 +53,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-
-app.post("/home", function(req, res) {
-  var name = req.body.name;
-  var age = req.body.age;
-  var contact = req.body.contact;
-
-  var userData = {
-    name: name,
-    age: age,
-    contact: contact
-  };
-  res.render("name", { data: userData });
-});
-
-app.get("/loop/data", (req, res) => {
-  var users = [
-    {
-      name: "test 1",
-      age: "17"
-    },
-    {
-      name: "test 2",
-      age: "20"
-    },
-    {
-      name: "test 3",
-      age: "15"
-    }
-  ];
-  res.render("data", { users: users });
-});
+app.use("/tasks", tasksRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -91,4 +72,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-`
